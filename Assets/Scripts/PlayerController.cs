@@ -16,7 +16,12 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private LayerMask solidObjectsLayer;
-    
+    [SerializeField]
+    private LayerMask grassLayer;
+
+    [SerializeField] private EncounterTransitionRender battleTransition;
+    private bool onBattleTransition;
+
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -25,10 +30,15 @@ public class PlayerController : MonoBehaviour
         animatorParameterIsMovingId = Animator.StringToHash("isMoving");
     }
 
+    private void Start()
+    {
+        battleTransition.AddOnFinishTransitionListener(OnFinishTransition);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (!isMoving)
+        if (!isMoving && !onBattleTransition)
         {
             moveInput.x = Input.GetAxisRaw("Horizontal");
             moveInput.y = Input.GetAxisRaw("Vertical");
@@ -61,7 +71,8 @@ public class PlayerController : MonoBehaviour
         while((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
-            yield return null;
+
+            yield return CheckForEncounters();
         }
         transform.position = targetPos;
 
@@ -71,5 +82,30 @@ public class PlayerController : MonoBehaviour
     private bool IsWalkable(Vector3 targetPos)
     {
         return !Physics2D.OverlapCircle(targetPos, 0.2f, solidObjectsLayer);
+    }
+
+    private IEnumerator CheckForEncounters()
+    {
+        if (IsGrass())
+        {
+            int encounterRate = Random.Range(1, 101);
+
+            if (encounterRate <= 2)
+            {
+                onBattleTransition = true;
+                Debug.Log("Encountered a wild Pokémon");
+                yield return battleTransition.BattleTransition();
+            }
+        }
+    }
+
+    private bool IsGrass()
+    {
+        return Physics2D.OverlapCircle(transform.position, 0.2f, grassLayer);
+    }
+
+    private void OnFinishTransition()
+    {
+        onBattleTransition = false;
     }
 }
