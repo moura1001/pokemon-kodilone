@@ -87,9 +87,9 @@ public class PlayerController : MonoBehaviour
     {
         if (IsGrass())
         {
-            int encounterRate = Random.Range(1, 101);
+            int tileEncounterRate = Random.Range(15, 26);
 
-            if (encounterRate <= 1)
+            if (Random.Range(0, 256 * 16) < tileEncounterRate)
             {
                 onBattleTransition = true;
                 Debug.Log("Encountered a wild Pokémon");
