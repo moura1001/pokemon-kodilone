@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252b94b224b5c99428a99be5941c36f5, type: 3}
   m_Name: Squirtle
   m_EditorClassIdentifier: 
-  name: Squirtle
+  pokeName: Squirtle
   description: 
   frontSprite: {fileID: 5985239058471163646, guid: 1f64b2051d48053469f9850b5189b733,
     type: 3}
@@ -20,7 +20,7 @@ MonoBehaviour:
     type: 3}
   type1: 3
   type2: 0
-  maxHp: 44
+  hp: 44
   attack: 48
   defense: 65
   speed: 43

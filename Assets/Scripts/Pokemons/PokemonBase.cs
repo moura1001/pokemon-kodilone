@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Pokemon", menuName = "Pokemon/Create new Pokemon")]
 public class PokemonBase : ScriptableObject
 {
-    [SerializeField] string name;
+    [SerializeField] string pokeName;
 
     [TextArea]
     [SerializeField] string description;
@@ -17,11 +17,66 @@ public class PokemonBase : ScriptableObject
     [SerializeField] PokemonType type2;
 
     //Base Stats
-    [SerializeField] ushort maxHp;
+    [SerializeField] ushort hp;
     [SerializeField] ushort attack;
     [SerializeField] ushort defense;
     [SerializeField] ushort speed;
     [SerializeField] ushort special;
+
+    public string Name
+    {
+        get { return pokeName; }
+    }
+
+    public string Description
+    {
+        get { return description; }
+    }
+
+    public Sprite FrontSprite
+    {
+        get { return frontSprite; }
+    }
+
+    public Sprite BackSprite
+    {
+        get { return backSprite; }
+    }
+
+    public PokemonType Type1
+    {
+        get { return type1; }
+    }
+
+    public PokemonType Type2
+    {
+        get { return type2; }
+    }
+
+    public ushort Hp
+    {
+        get { return hp; }
+    }
+
+    public ushort Attack
+    {
+        get { return attack; }
+    }
+
+    public ushort Defense
+    {
+        get { return defense; }
+    }
+
+    public ushort Speed
+    {
+        get { return speed; }
+    }
+
+    public ushort Special
+    {
+        get { return special; }
+    }
 }
 
 public enum PokemonType

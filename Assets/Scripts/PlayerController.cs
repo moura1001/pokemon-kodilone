@@ -33,6 +33,10 @@ public class PlayerController : MonoBehaviour
     {
         battleTransition.AddOnFinishTransitionListener(OnFinishTransition);
         movePoint.parent = null;
+
+        new Pokemon(null, 8, 14, 5, 8, 6);
+
+        new Pokemon(null, 8, 2, 6, 10, 12);
     }
 
     void Update()

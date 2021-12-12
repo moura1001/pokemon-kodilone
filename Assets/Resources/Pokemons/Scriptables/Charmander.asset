@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252b94b224b5c99428a99be5941c36f5, type: 3}
   m_Name: Charmander
   m_EditorClassIdentifier: 
-  name: Charmander
+  pokeName: Charmander
   description: 
   frontSprite: {fileID: -204359854808501785, guid: 1f64b2051d48053469f9850b5189b733,
     type: 3}
@@ -20,7 +20,7 @@ MonoBehaviour:
     type: 3}
   type1: 2
   type2: 0
-  maxHp: 39
+  hp: 39
   attack: 52
   defense: 43
   speed: 65
