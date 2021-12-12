@@ -23,6 +23,8 @@ public class PokemonBase : ScriptableObject
     [SerializeField] ushort speed;
     [SerializeField] ushort special;
 
+    [SerializeField] List<LearnableMove> learnableMoves;
+
     public string Name
     {
         get { return pokeName; }
@@ -77,6 +79,11 @@ public class PokemonBase : ScriptableObject
     {
         get { return special; }
     }
+
+    public List<LearnableMove> LearnableMoves
+    {
+        get { return learnableMoves; }
+    }
 }
 
 public enum PokemonType
@@ -97,4 +104,21 @@ public enum PokemonType
     Rock,
     Ghost,
     Dragon
+}
+
+[System.Serializable]
+public class LearnableMove
+{
+    [SerializeField] MoveBase moveBase;
+    [SerializeField] ushort level;
+
+    public MoveBase Base
+    {
+        get { return moveBase; }
+    }
+
+    public ushort Level
+    {
+        get { return level; }
+    }
 }
