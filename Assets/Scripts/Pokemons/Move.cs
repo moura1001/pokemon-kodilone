@@ -7,9 +7,9 @@ public class Move
     public MoveBase Base { get; set; }
     public ushort PP { get; set; }
 
-    public Move(MoveBase _base, ushort pp)
+    public Move(MoveBase _base)
     {
         Base = _base;
-        PP = pp;
+        PP = _base.PP;
     }
 }

@@ -19,6 +19,10 @@ public class Pokemon
     ushort speedEV;
     ushort specialEV;
 
+    public List<Move> Moves { get; set; }
+
+    public ushort CurrentHP { get; set; }
+
     public Pokemon(PokemonBase _base, ushort level,
                     ushort attackIV, ushort defenseIV, ushort speedIV, ushort specialIV)
     {
@@ -36,6 +40,17 @@ public class Pokemon
         int bit3 = (short)((attackIV & 1) << 3);
 
         hpIV = (ushort) (bit0 | bit1 | bit2 | bit3);
+
+        Moves = new List<Move>();
+        for(int i = _base.LearnableMoves.Count - 1; i >= 0 && Moves.Count < 4; i--)
+        {
+            if (_base.LearnableMoves[i].Level <= level)
+            {
+                Moves.Add(new Move(_base.LearnableMoves[i].Base));
+            }
+        }
+
+        CurrentHP = _base.Hp;
     }
 
     public ushort Hp
